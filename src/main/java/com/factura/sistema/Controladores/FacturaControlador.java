@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +26,7 @@ public class FacturaControlador {
         return facturaServicio.guardar(factura);
     }
     @PutMapping 
-    public Factura actualizar(@RequestBody Factura factura,Long id){
+    public Factura actualizar(@RequestBody Factura factura, @PathVariable Long id){
         factura.setId(id);
         return facturaServicio.guardar(factura);
     }
@@ -34,11 +35,11 @@ public class FacturaControlador {
         return facturaServicio.listaAll();
     }
     @GetMapping("/{id}")
-    public Factura obtener(@RequestBody Long id){
+    public Factura obtener(@PathVariable Long id){
         return facturaServicio.listaFactura(id);
     }
     @DeleteMapping("/{id}")
-    public void eliminar(@RequestBody Long id){
+    public void eliminar(@PathVariable Long id){
         facturaServicio.eliminar(id);
     }
 }
