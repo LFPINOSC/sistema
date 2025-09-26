@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.factura.sistema.Entidades.Cliente;
 import com.factura.sistema.Repositorios.ClienteRespositorio;
-
+@Service
 public class ClienteServicio {
     @Autowired
     private ClienteRespositorio clienteRespositorio;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.factura.sistema.Entidades.Cliente;
 import com.factura.sistema.Entidades.DetFactura;
@@ -16,6 +17,7 @@ import com.factura.sistema.Repositorios.ProductoRespositorio;
 
 import jakarta.transaction.Transactional;
 
+@Service
 public class FacturaServicio {
     @Autowired
     private FacturaRepositorio facturaRepositorio;
