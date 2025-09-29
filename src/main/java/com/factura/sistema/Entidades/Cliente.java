@@ -18,7 +18,6 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     private Long id;
-   
     @Column(name="clienteCedula" , length = 200 ,nullable = false)
     private String cedula;
     @NotBlank(message = "El nombre no esvalido")

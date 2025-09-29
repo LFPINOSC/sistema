@@ -18,6 +18,7 @@ public class ClienteServicio {
     public Cliente guardar(Cliente cliente){
         return clienteRespositorio.save(cliente);
     }
+    
     public List<Cliente> listaAll(){
         return clienteRespositorio.findAll();
     }
