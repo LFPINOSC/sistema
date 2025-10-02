@@ -20,6 +20,9 @@ public class UsuarioServicio {
     public List<Usuario> ListarAll(){
         return usuarioRepositorio.findAll();
     }
+    public Usuario listUsuarioNombre(String username){
+        return usuarioRepositorio.findByUsername(username).orElse(null);
+    }
     public Usuario ListarUsuario(Long id){
         return usuarioRepositorio.findById(id).orElse(null);
     }
