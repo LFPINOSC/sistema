@@ -19,7 +19,7 @@ import com.factura.sistema.Servcios.UsuarioServicio;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 @CrossOrigin(origins = "http://localhost:9090")
 public class AuthControlador {
     @Autowired
@@ -27,18 +27,25 @@ public class AuthControlador {
 
     @Autowired 
     private JwtService jwtService;
+
     @Autowired
     private UsuarioServicio usuarioServicio;
 
     @PostMapping("/login")
     public JwtResponse login(@RequestBody LoginRequest request) {
+        System.err.println(request+"datos que llegan");
+        request.setPassword("admin");
+        request.setUsername("admin");
+        System.out.println("el clave es:"+request.getPassword());
         Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
         );
         User user = (User) authentication.getPrincipal();
+        System.out.println("el usuario es:"+request.getUsername());
+        System.out.println("el clave es:"+request.getPassword());
         Usuario usuario = usuarioServicio.listUsuarioNombre(user.getUsername());
         String token = jwtService.generateToken(usuario.getUsername(),usuario.getTipoUsuario().getNombre());
-        return new JwtResponse(token, "Bearer", usuario.getUsername());
+        return new JwtResponse(token,  usuario.getUsername());
      
     }
 

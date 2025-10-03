@@ -2,7 +2,9 @@ package com.factura.sistema.Servcios;
 
 import java.util.List;
 
+import org.hibernate.validator.internal.util.stereotypes.Lazy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.factura.sistema.Entidades.Usuario;
@@ -13,7 +15,12 @@ public class UsuarioServicio {
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
 
+    @Autowired
+    @Lazy
+    private PasswordEncoder passwordEncoder;
+
     public Usuario guardar(Usuario usuario){
+         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         return usuarioRepositorio.save(usuario);
 
     }

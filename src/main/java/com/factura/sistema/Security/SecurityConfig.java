@@ -31,12 +31,15 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
-                    "/api/auth/**",
+                    "actuator/prometheus",
+                    "actuator/health",
+                    "actuator/",
+                    "/auth/**",
                     "swagger-ui/**",
                     "/v3/api-docs/**",
                     "/h2-console/**",
-                    "swagger-ui.html", 
-                    "actuator/**"
+                    "swagger-ui.html"
+                    
                 ).permitAll()
                 .anyRequest().authenticated()
             )
@@ -49,7 +52,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(List.of("*")); // importante
+        configuration.setAllowedOriginPatterns(List.of("http://localhost:9090")); // importante
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
