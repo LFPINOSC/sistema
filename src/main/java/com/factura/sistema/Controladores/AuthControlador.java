@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,7 @@ import com.factura.sistema.Entidades.Usuario;
 import com.factura.sistema.Servcios.JwtService;
 import com.factura.sistema.Servcios.UsuarioServicio;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 
 @RestController
 @RequestMapping("/auth")
@@ -34,8 +35,6 @@ public class AuthControlador {
     @PostMapping("/login")
     public JwtResponse login(@RequestBody LoginRequest request) {
         System.err.println(request+"datos que llegan");
-        request.setPassword("admin");
-        request.setUsername("admin");
         System.out.println("el clave es:"+request.getPassword());
         Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
