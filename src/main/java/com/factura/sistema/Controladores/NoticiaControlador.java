@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-
 import com.factura.sistema.Entidades.Noticia;
 import com.factura.sistema.Servcios.NoticiaServicio;
 @RestController
@@ -23,6 +21,7 @@ public class NoticiaControlador {
 
     @PostMapping
     public Noticia crear(@RequestBody Noticia noticia){
+        System.out.println(noticia);
         return noticiaServicio.guardar(noticia);
     }
     @PutMapping("/{id}")

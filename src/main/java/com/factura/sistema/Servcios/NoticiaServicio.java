@@ -11,8 +11,10 @@ import jakarta.transaction.Transactional;
 public class NoticiaServicio {
     @Autowired
     private NoticiaRepositorio noticiaRepositorio;
+    
     @Transactional
     public Noticia guardar(Noticia noticia){
+        System.out.println("si"+noticia);
         return noticiaRepositorio.save(noticia);
     }
     
