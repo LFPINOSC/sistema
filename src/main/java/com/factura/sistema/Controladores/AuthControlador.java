@@ -25,13 +25,10 @@ import com.factura.sistema.Servcios.UsuarioServicio;
 public class AuthControlador {
     @Autowired
     private AuthenticationManager authenticationManager;
-
     @Autowired 
     private JwtService jwtService;
-
     @Autowired
     private UsuarioServicio usuarioServicio;
-
     @PostMapping("/login")
     public JwtResponse login(@RequestBody LoginRequest request) {
         System.err.println(request+"datos que llegan");
@@ -45,7 +42,6 @@ public class AuthControlador {
         Usuario usuario = usuarioServicio.listUsuarioNombre(user.getUsername());
         String token = jwtService.generateToken(usuario.getUsername(),usuario.getTipoUsuario().getNombre());
         return new JwtResponse(token,  usuario.getUsername());
-     
     }
 
 }

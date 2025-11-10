@@ -31,9 +31,6 @@ public class DataLoader {
                 usuario.setPassword("admin");
                 usuario.setTipoUsuario(tipoUsuario);
                 usuarioServicio.guardar(usuario);
-
-                
-
             }
         };
     }
